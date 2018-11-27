@@ -1,0 +1,312 @@
+<div class="row container-fluid">
+    <div class="col-7">
+
+        <div class="overpanel update-logo-panel" (mouseleave) ="showLogoPanelOnOver = false" 
+            *ngIf="showLogoPanelOnOver">
+            <div style="cursor: pointer; padding: 20px" (click)="viewMode = 'logo'">
+                <span><small>Update your Logo</small></span> 
+                <span class="pull-right"><i class="fa fa-edit"></i></span>
+            </div>
+        </div>
+
+        <!-- This is the heading setting mouse over panel-->
+        <div class="overpanel update-heading-panel" (mouseleave) ="showEditHeadingPanel = false" 
+        *ngIf="showEditHeadingPanel">
+            <div style="cursor: pointer; padding: 20px" (click)="viewMode = 'heading'">
+                <span><small>Update Body Content</small></span> 
+                <span class="pull-right"><i class="fa fa-edit"></i></span>
+            </div>
+        </div>
+
+        <!-- This is the heading setting mouse over panel end here-->
+
+
+        <!-- This is the user setting mouse over panel-->
+        <div class="overpanel update-user-setting-panel" (mouseleave) ="showFieldPanel = false" 
+          *ngIf="showFieldPanel">
+            <div style="cursor: pointer; padding: 20px" (click)="viewMode = 'userfield'">
+                <span><small>Update Field</small></span> 
+                <span class="pull-right"><i class="fa fa-edit"></i></span>
+            </div>
+        </div>
+
+         <!-- This is the footer setting mouse over panel-->
+        <div class="overpanel update-footer-panel" (mouseleave) ="showEditFooterPanel = false" 
+          *ngIf="showEditFooterPanel">
+            <div style="cursor: pointer; padding: 20px" (click)="viewMode = 'footer'">
+                <span><small>Update Footer Content</small></span> 
+                <span class="pull-right"><i class="fa fa-edit"></i></span>
+            </div>
+        </div>
+
+        <!-- Email template start here -->
+
+        <div class="email-template">
+              <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+                  <tr>
+                      <td align="center" valign="top" id="bodyCell">
+                          <!-- BEGIN TEMPLATE // -->
+                          <table border="0" cellpadding="0" cellspacing="0" id="templateContainer">
+                    
+                            <tr>
+                                  <td align="center" valign="top">
+                                      <!-- BEGIN HEADER // -->
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
+                                            <tr id="logo-section">
+                                                <td align="center" class="headerContent">
+                                                    <small style="cursor: pointer; padding: 20px" (click)="viewMode = 'logo'"
+                                                    ><span class="pull-right">
+                                                        <i class="fa fa-edit"></i>
+                                                    </span></small>
+                                                    <div style="margin: 0 auto;text-align: center;padding: 10px;">
+                                                  <img id="logo-item" (mouseenter)="showLogoPanelOnOver = true"  
+                                                  *ngIf="this.logoUrl "                 
+                                                  class="logo-item" [(src)]=" this.logoUrl " 
+                                                        style="max-width:600px;" 
+                                                        id="headerImage" 
+                                                       />
+                                                  </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- // END HEADER -->
+                                    </td>
+                            </tr>
+                            <tr>
+                                  <td align="center" valign="top">
+                                      <!-- BEGIN BODY // -->
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+                                            <tr>
+                                                <td valign="top" class="bodyContent" mc:edit="body_content">
+                                                    <div (mouseenter)="showEditHeadingPanel = true"> 
+                                                            <div [innerHTML]="this.mailBodyContent"></div>
+                                                        
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- // END BODY -->
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td style="margin:20px">
+                                      <div class="static-content">
+                                            <button type="button" class="btn btn-primary">Confirm email</button>
+                                      </div>  
+                                </td>
+                            </tr>
+                            <tr>
+                                    <td style="margin:20px" (mouseenter)="showFieldPanel = true">
+                                          <div class="static-content">
+                                              <p style="margin-top: 30px">Update field you want user to see</p>
+                                              <table align="left" class="table table-hover">
+                                                  <tr>
+                                                      <td style="text-align:left; font-size: 12px">First Name</td>
+                                                      <td style="text-align:left; font-size: 12px">Last Name</td>
+                                                  </tr>
+                                                  <tr>
+                                                        <td style="text-align:left; font-size: 12px">Phone Number</td>
+                                                        <td style="text-align:left; font-size: 12px">Email</td>
+                                                 </tr>
+                                                 <tr>
+                                                        <td style="text-align:left; font-size: 12px">Address</td>
+                                                        <td style="text-align:left; font-size: 12px">Loan Address</td>
+                                                 </tr>
+                                                 <tr>
+                                                        <td style="text-align:left; font-size: 12px">Loan due date</td>
+                                                        <td style="text-align:left; font-size: 12px">Bvn</td>
+                                                 </tr>
+                                                 <tr>
+                                                        <td style="text-align:left; font-size: 12px">Account Number</td>
+                                                        <td style="text-align:left; font-size: 12px">Account Name</td>
+                                                 </tr>
+                                                 <tr>
+                                                        <td style="text-align:left; font-size: 12px">Bank Name</td>
+                                                 </tr>
+                                              </table>
+                                          </div>  
+                                    </td>
+                                </tr>
+                            <tr>
+                                  <td align="center" valign="top" (mouseenter)="showEditFooterPanel = true">
+                                      <!-- BEGIN FOOTER // -->
+                                        <table border="0" cellpadding="10" cellspacing="0" width="100%" id="templateFooter">
+                                            <tr>
+                                                    <div style="padding: 20px" [innerHTML]="this.footerBodyContent"></div>
+                                            </tr>
+                                           
+                                        </table>
+                                        <!-- // END FOOTER -->
+                                    </td>
+                            </tr>
+                            </table>
+                            <!-- // END TEMPLATE -->
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <!-- Email template end here -->
+       
+        <div *ngIf="editorContent"[froalaView]="editorContent"></div>
+    
+    </div>
+    <div class="col-5">
+        <div class="default-setting">
+            <div [ngSwitch]="viewMode">
+                <div *ngSwitchCase="'logo'">
+                     <!-- Page update logo division-->
+                    <div class="page-header setting">
+                        <div class="top-design__setting">
+                            <p class="backToSetting" (click)="viewMode = ''">
+                            <i class="fa fa-chevron-left"> </i>
+                            Back <span class="pull-right" style="font-size: 13px;">Update Logo</span>
+                            </p>
+                        </div>
+                        <div class="upload_form_wrapper">
+                                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                        <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
+                                        <button type="button" class="btn btn-sm btn-default" 
+                                        (click)="clearFile()">clear file</button>
+                                    </div>
+                                    <button type="submit" [disabled]="form.invalid || loading" 
+                                        class="btn btn-success">Submit 
+                                    <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                                </button>
+                                </form>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'heading'">
+                     <!-- Page setting header division-->
+                    <div class="page-header setting">
+                        <div class="top-design__setting">
+                            <p class="backToSetting" (click)="viewMode = ''">
+                            <i class="fa fa-chevron-left"> </i>
+                            Back <span class="pull-right" style="font-size: 13px;">Update Body Content</span>
+                            </p>
+                            <!-- Example single danger button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select option you want to display
+                            </button>
+                            <div class="dropdown-menu">
+                            <a class="dropdown-item" (click)="insertTextAtCursor('[LEGAL_NAME]')" href="#">Legal Name</a>
+                            <a class="dropdown-item" (click)="insertTextAtCursor('[ACCOUNT_NUMBER]')" href="#">Account Number</a>
+                            <a class="dropdown-item" (click)="insertTextAtCursor('[EMAIL]')" href="#">Email</a>
+                            <a class="dropdown-item" (click)="insertTextAtCursor('[BVN_NUMBER]')" href="#">Bvn Number</a>
+                            </div>
+                        </div>
+                        </div> 
+                            <form [formGroup]="updateBodyContentForm" 
+                                (ngSubmit)="onUpdateBodyContent(updateBodyContentForm.bodyContent)">
+                                <textarea style="height: 300px" 
+                                    [froalaEditor] formControlName="bodyContent" 
+                                    [(ngModel)]="this.mailBodyContent "
+                                    [(froalaModel)]="updateBodyContentForm.bodyContent">
+                                </textarea>
+                                <p>
+                                    <button 
+                                    style="margin-top: 20px;" 
+                                    [disabled]="!updateBodyContentForm.valid"
+                                    type="submit" 
+                                    class="btn btn-primary">Update
+                                    <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                                    </button>
+                                </p>
+                            </form>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'footer'">
+                        <!-- Page setting header division-->
+                       <div class="page-header setting">
+                           <div class="top-design__setting">
+                               <p class="backToSetting" (click)="viewMode = ''">
+                                <i class="fa fa-chevron-left"> </i>
+                               Back 
+                               <span class="pull-right" style="font-size: 13px;">Update Footer Content</span>
+                               </p>
+                           </div>
+                               <form [formGroup]="updateFooterContentForm" 
+                               (ngSubmit)="onUpdateFooterContent(updateFooterContentForm.bodyContent)">
+                                   <textarea style="height: 300px" [froalaEditor] 
+                                        formControlName="footerContent" 
+                                        [(ngModel)]="this.footerBodyContent"
+                                       [(froalaModel)]="updateFooterContentForm.bodyContent">
+                                   </textarea>
+                                   <p>
+                                       <button style="margin-top: 20px;" 
+                                       [disabled]="!updateFooterContentForm.valid"
+                                        type="submit" 
+                                        class="btn btn-primary">Update 
+                                        <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                                        </button>
+                                    </p>
+                               </form>
+                       </div>
+                </div>
+                <div *ngSwitchCase="'userfield'">
+                        <!-- Page setting header division-->
+                       <div class="page-header setting">
+                           <div class="top-design__setting">
+                               <p class="backToSetting" (click)="viewMode = ''">
+                                <i class="fa fa-chevron-left"> </i>
+                               Back 
+                               <span class="pull-right" style="font-size: 13px;">Update User Field</span>
+                               </p>
+                           </div>
+                           <p class="small">Check the field the want user to see</p>
+                           <form [formGroup]="formCheckbox" (ngSubmit)="submit()">
+                                <label class="formGroupList" 
+                                    formArrayName="fields" 
+                                    style="display: block;"
+                                    *ngFor="let order of formCheckbox.controls.fields.controls; let i = index">
+                                  <input type="checkbox" [checked]="fields[i].value"  [formControlName]="i">
+                                  {{fields[i].name}} ----- {{fields[i].value}}
+                                </label>
+                              
+                                <button 
+                                    style="margin-top: 20px;" 
+                                    [disabled]="!formCheckbox.valid"
+                                    type="submit" 
+                                    class="btn btn-primary">Update
+                                    <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i>
+                                    </button>
+                            </form>
+                       </div>
+                </div>
+                <div *ngSwitchDefault>
+                    <h2 class="default-screen">Hover on any section you want to update</h2>
+                    <div>
+                            <h1 style="text-align:center; font-size: 230px"><i class="fa fa-edit"></i></h1>
+                    </div>
+                </div>
+            </div>
+
+              <!-- Page setting body division-->
+            <div class="page-body setting" *ngIf="this.settingPage.bodySetting">
+                <div class="top-design__setting">
+                    <p class="backToSetting" (click)="OnclickShowSetting()">
+                      Back <span class="pull-right" style="font-size: 20px;">Body Design</span>
+                    </p>
+                </div>
+                <p>This is the body setting</p>
+            </div>
+
+              <!-- Page setting footer division-->
+            <div class="page-footer setting" *ngIf="this.settingPage.footerSetting">
+                <div class="top-design__setting">
+                    <p class="backToSetting" (click)="OnclickShowSetting()">
+                      Back <span class="pull-right" style="font-size: 20px;">Footer Design</span>
+                    </p>
+                </div>
+                <p>This is the footer setting</p>
+            </div>
+        </div>
+        <!-- <div  *ngIf="defaultSetting == false" [froalaEditor] [(froalaModel)]="editorContent"></div> -->
+    </div>
+  </div>
+
+
+
+
